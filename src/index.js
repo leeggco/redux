@@ -1,40 +1,9 @@
-import { createStore, combineReducers} from 'redux';
-
-const postsReducer = (state = [], action) => {
-	switch(action.type){
-		case 'ADD_POST':
-			return [
-				...state,
-				{ ...action.post }
-			]
-		default:
-			return state
-	}
-}
-
-const commentsReducer = (state = [], action) => {
-	switch(action.type){
-		case 'ADD_COMMENT':
-			return [
-				...state,
-				{ ...action.comment }
-			]
-		default:
-			return state
-	}
-}
-
-// const mainReducer = (state = {}, action) => {
-// 	return {
-// 		posts: postsReducer(state.posts, action),
-// 		comments: commentsReducer(state.comments, action)
-// 	}
-// }
-
-const mainReducer = combineReducers({
-	a: postsReducer,
-	b: commentsReducer
-})
+import React from 'react';
+import { render } from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import mainReducer from './reducers';
+import App from './components/App'
 
 const store = createStore(mainReducer);
 const log = () => {
@@ -73,6 +42,13 @@ store.dispatch({
 		title: 'Wonderful!'
 	}
 })
+
+render(
+	<Provider store = {store}>
+		<App />
+	</Provider>,
+	document.getElementById('root')
+)
 
 // import { createStore } from 'redux';
 //
