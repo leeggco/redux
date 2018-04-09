@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import mainReducer from './reducers';
@@ -43,7 +43,7 @@ store.dispatch({
 	}
 })
 
-render(
+ReactDOM.render(
 	<Provider store = {store}>
 		<App />
 	</Provider>,
@@ -52,12 +52,12 @@ render(
 
 // import { createStore } from 'redux';
 //
-// const counterReducer = (store = 0, action) => {
+// const counterReducer = (state = 0, action) => {
 // 	switch(action.type) {
 // 		case 'INCERMENT':
-// 			return store + 1
+// 			return state + 1
 // 		default:
-// 			return store
+// 			return state
 // 	}
 // }
 //
